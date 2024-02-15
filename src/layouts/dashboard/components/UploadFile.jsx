@@ -27,9 +27,18 @@ const UploadFile = ({isOpen,onClose,}) => {
         register,
         formState: { errors, isSubmitting },
     } = useForm();
-    const onSubmit = (values) => {
+    const onSubmit = (formData) => {
+        const formDataWithFile = new FormData();
+        formDataWithFile.append("file", formData.file[0]);
         mutate(
-            { url: URLS.file_upload, attributes: {file: values.file} },
+            {
+                url: URLS.file_upload,
+                attributes: formDataWithFile,
+                config: {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }},
+            },
             {
                 onSuccess: ({ data }) => {
                     onClose();
@@ -49,13 +58,13 @@ const UploadFile = ({isOpen,onClose,}) => {
                   <ModalHeader>{t("Upload file")}</ModalHeader>
                   <ModalCloseButton />
                   <ModalBody>
-                      <form onSubmit={handleSubmit(onSubmit)}>
+                      <form onSubmit={handleSubmit(onSubmit)} enctype="multipart/form-data">
                           <SimpleGrid columns={{base: 1}} gap={5}>
                               <FormControl isInvalid={errors.file}>
                                   <FormLabel htmlFor="file">{t('File')}</FormLabel>
                                   <InputGroup>
                                       <Input
-                                          type={"file"}
+                                          type="file"
                                           id="file"
                                           accept=".pdf,.xls,.xlsx,.doc,.docx"
                                           {...register("file", {
@@ -65,7 +74,7 @@ const UploadFile = ({isOpen,onClose,}) => {
                                       />
                                   </InputGroup>
                                   <FormErrorMessage>
-                                      {errors.file && errors.nameUz.file}
+                                      {errors.file && errors.file.message}
                                   </FormErrorMessage>
                               </FormControl>
                           </SimpleGrid>

@@ -25,7 +25,6 @@ import UploadFile from "./UploadFile.jsx";
 
 const MobileNav = ({
                        onOpen,
-                       username = "Admin",
                        logout = () => {
                        },
                        ...rest

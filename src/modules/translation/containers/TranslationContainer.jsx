@@ -60,7 +60,7 @@ const TranslationContainer = () => {
       <Box bg="white" w="100%" p={4} borderRadius="md">
         <InputGroup mt={2} mb={4}>
           <Input
-            placeholder={"Search"}
+            placeholder={t("Search")}
             type={"text"}
             onChange={(e) => setSearchWord(e.target.value)}
           />

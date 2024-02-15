@@ -41,7 +41,7 @@ request.interceptors.response.use(
   },
   (error) => {
     const statusCode = error.response.status;
-    if (statusCode === 401) {
+    if (statusCode === 403) {
         Swal.fire({
           position: "center",
           icon: "error",

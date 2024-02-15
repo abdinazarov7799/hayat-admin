@@ -22,4 +22,6 @@ export const URLS = {
     user_unblock: '/api/user/unblock',
     user_one: '/api/user/get-by-id',
     file_upload: '/api/files/upload',
+    get_order: '/api/order/get',
+    delivered_order: '/api/order/delivered',
 };

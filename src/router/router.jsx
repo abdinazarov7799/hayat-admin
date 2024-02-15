@@ -26,6 +26,7 @@ import ProductsPage from "../modules/products/pages/ProductsPage.jsx";
 import UsersPage from "../modules/users/pages/UsersPage.jsx";
 import MarketsPage from "../modules/market/pages/MarkestPage.jsx";
 import TranslationPage from "../modules/translation/pages/TranslationPage.jsx";
+import OrderPage from "../modules/order/pages/OrderPage.jsx";
 // PAGES
 
 
@@ -76,6 +77,7 @@ dayjs.extend(utc)
             <Route path={"/auth"} element={<AuthLayout />}>
               <Route index element={<LoginPage />} />
             </Route>
+            <Route path={"/order/:id"}  index element={<OrderPage />} />
             <Route path={"*"} element={<Navigate to={"/auth"} replace />} />
           </Routes>
         </IsGuest>

@@ -1,5 +1,5 @@
 import Pagination from "../../../components/pagination/index.jsx";
-import {useState} from "react";
+import React, {useState} from "react";
 import {get, isArray, isEmpty} from "lodash";
 import {useTranslation} from "react-i18next";
 import {
@@ -7,7 +7,7 @@ import {
     Button,
     Flex,
     Heading,
-    useDisclosure, TableContainer, Table, Thead, Tr, Th, Tbody, Td, Tfoot,
+    useDisclosure, TableContainer, Table, Thead, Tr, Th, Tbody, Td, Tfoot, Input, InputRightElement, InputGroup,
 } from "@chakra-ui/react";
 import {AiOutlinePlus} from "react-icons/ai";
 import {CreateItem} from "../../../components/CreateItem.jsx";
@@ -16,6 +16,7 @@ import {URLS} from "../../../constants/url.js";
 import {OverlayLoader} from "../../../components/loader/index.js";
 import {UpdateItem} from "../../../components/UpdateItem.jsx";
 import usePaginateQuery from "../../../hooks/api/usePaginateQuery.js";
+import {FaSearch} from "react-icons/fa";
 
 
 const ProductsContainer = () => {
@@ -23,6 +24,7 @@ const ProductsContainer = () => {
     const [page, setPage] = useState(0);
     const [size, setSize] = useState(10);
     const [itemData, setItemData] = useState(null);
+    const [key,setKey] = useState();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { isOpen:updateIsOpen, onOpen:updateOnOpen, onClose:updateOnClose } = useDisclosure();
     const {data,isLoading,isFetching,refetch} = usePaginateQuery({
@@ -31,6 +33,7 @@ const ProductsContainer = () => {
         params: {
             params: {
                 size,
+                key
             }
         },
         page
@@ -59,6 +62,15 @@ const ProductsContainer = () => {
                     />
                 </Flex>
 
+                <InputGroup mt={3} mb={4}>
+                    <Input
+                        placeholder={t("Search")}
+                        type={"text"}
+                        onChange={(e) => setKey(e.target.value)}
+                    />
+                    <InputRightElement children={<FaSearch />} />
+                </InputGroup>
+
                 <TableContainer mt={6}>
                     {isLoading && <OverlayLoader />}
                     <Table colorScheme="gray" size={"md"} >
@@ -67,7 +79,6 @@ const ProductsContainer = () => {
                                 <Th>{t("Ordinal number")}</Th>
                                 <Th>{t("name UZ")}</Th>
                                 <Th>{t("name RU")}</Th>
-                                <Th>{t("id")}</Th>
                             </Tr>
 
                         </Thead>
@@ -91,7 +102,6 @@ const ProductsContainer = () => {
                                             <Td>{get(item, "number", "-")}</Td>
                                             <Td>{get(item, "nameUz", "-")}</Td>
                                             <Td>{get(item, "nameRu", "-")}</Td>
-                                            <Td>{get(item, "id", '-')}</Td>
                                         </Tr>
                                     ))}
                                 </Tbody>
