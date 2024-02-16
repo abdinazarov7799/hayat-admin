@@ -95,7 +95,6 @@ export const UpdateItem = ({
                                         {...register("nameUz", {
                                             required: true,
                                         })}
-                                        defaultValue={get(itemData,'nameUz',)}
                                         placeholder={t("Name")}
                                     />
                                 </InputGroup>
@@ -112,7 +111,6 @@ export const UpdateItem = ({
                                         {...register("nameRu", {
                                             required: true,
                                         })}
-                                        defaultValue={get(itemData,'nameRu')}
                                         placeholder={t("Name")}
                                     />
                                 </InputGroup>
@@ -126,7 +124,6 @@ export const UpdateItem = ({
                                         <FormLabel htmlFor="number">{t('Ordinal number')}</FormLabel>
                                         <NumberInput
                                             step={1}
-                                            defaultValue={get(itemData,'number')}
                                             min={0}
                                             {...register("number")}
                                         >
