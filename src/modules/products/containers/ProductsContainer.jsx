@@ -79,6 +79,8 @@ const ProductsContainer = () => {
                                 <Th>{t("Ordinal number")}</Th>
                                 <Th>{t("name UZ")}</Th>
                                 <Th>{t("name RU")}</Th>
+                                <Th>{t("category name UZ")}</Th>
+                                <Th>{t("category name RU")}</Th>
                             </Tr>
 
                         </Thead>
@@ -102,6 +104,8 @@ const ProductsContainer = () => {
                                             <Td>{get(item, "number", "-")}</Td>
                                             <Td>{get(item, "nameUz", "-")}</Td>
                                             <Td>{get(item, "nameRu", "-")}</Td>
+                                            <Td>{get(item, "category.nameUz", "-")}</Td>
+                                            <Td>{get(item, "category.nameRu", "-")}</Td>
                                         </Tr>
                                     ))}
                                 </Tbody>
