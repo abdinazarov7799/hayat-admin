@@ -33,7 +33,7 @@ const MarketsContainer = () => {
         params: {
             params: {
                 size,
-                key
+                name: key
             }
         },
         page

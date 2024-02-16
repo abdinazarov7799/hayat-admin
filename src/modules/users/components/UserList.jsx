@@ -24,6 +24,7 @@ const UserList = () => {
     const { t } = useTranslation();
     const [page, setPage] = useState(0);
     const [size, setSize] = useState(10);
+    const [key,setKey] = useState();
 
     const {data,isLoading,refetch} = usePaginateQuery({
         key: KEYS.user_get_all,
@@ -31,6 +32,7 @@ const UserList = () => {
         params: {
             params: {
                 size,
+                search: key
             }
         },
         page
@@ -104,7 +106,7 @@ const UserList = () => {
                 <Input
                     placeholder={t("Search")}
                     type={"text"}
-                    onChange={(e) => setSearchWord(e.target.value)}
+                    onChange={(e) => setKey(e.target.value)}
                 />
                 <InputRightElement children={<FaSearch />} />
             </InputGroup>

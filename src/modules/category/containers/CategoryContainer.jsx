@@ -33,7 +33,7 @@ const CategoryContainer = () => {
         params: {
             params: {
                 size,
-                key
+                name: key
             }
         },
         page

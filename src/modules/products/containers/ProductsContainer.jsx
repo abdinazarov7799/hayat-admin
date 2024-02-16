@@ -33,7 +33,7 @@ const ProductsContainer = () => {
         params: {
             params: {
                 size,
-                key
+                name: key
             }
         },
         page
