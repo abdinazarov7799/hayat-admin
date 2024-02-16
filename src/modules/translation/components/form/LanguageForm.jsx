@@ -23,9 +23,9 @@ const LanguageForm = ({ langkey, onClose }) => {
     listKeyId: KEYS.translations_list,
     hideSuccessToast: false,
   });
-
   const onSubmit = (values) => {
     values.id = get(langkey, "id");
+    values.key = get(langkey, "key");
     mutate(
       { url: `${URLS.translations_edit}`, attributes: values },
       {

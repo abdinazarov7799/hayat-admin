@@ -150,8 +150,7 @@ export const UpdateItem = ({
                                                 isArray(get(data,'data.data.content',[])) && (
                                                     get(data,'data.data.content',[]).map((item) => (
                                                         <option value={get(item,'id')}>
-                                                            <Text>{get(item,'nameUz')}</Text>
-                                                            <Text>{get(item,'nameRu')}</Text>
+                                                            <Text>{get(item,'nameUz')}</Text> / <Text>{get(item,'nameRu')}</Text>
                                                         </option>
                                                     ))
                                                 )
