@@ -1,5 +1,5 @@
 const config = {
-  API_ROOT: 'http://localhost:8081',
+  API_ROOT: 'https://hayat-backend.medias.uz',
   DEFAULT_APP_LANG: "Uz",
   ROLES: {
     ADMIN: "admin",
