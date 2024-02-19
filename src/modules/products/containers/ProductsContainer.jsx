@@ -7,9 +7,22 @@ import {
     Button,
     Flex,
     Heading,
-    useDisclosure, TableContainer, Table, Thead, Tr, Th, Tbody, Td, Tfoot, Input, InputRightElement, InputGroup,
+    useDisclosure,
+    TableContainer,
+    Table,
+    Thead,
+    Tr,
+    Th,
+    Tbody,
+    Td,
+    Tfoot,
+    Input,
+    InputRightElement,
+    InputGroup,
+    Modal,
+    ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, IconButton,
 } from "@chakra-ui/react";
-import {AiOutlinePlus} from "react-icons/ai";
+import {AiOutlineDelete, AiOutlineEdit, AiOutlinePlus} from "react-icons/ai";
 import {CreateItem} from "../../../components/CreateItem.jsx";
 import {KEYS} from "../../../constants/key.js";
 import {URLS} from "../../../constants/url.js";
@@ -17,6 +30,8 @@ import {OverlayLoader} from "../../../components/loader/index.js";
 import {UpdateItem} from "../../../components/UpdateItem.jsx";
 import usePaginateQuery from "../../../hooks/api/usePaginateQuery.js";
 import {FaSearch} from "react-icons/fa";
+import useDeleteQuery from "../../../hooks/api/useDeleteQuery.js";
+import Swal from "sweetalert2";
 
 
 const ProductsContainer = () => {
@@ -39,7 +54,32 @@ const ProductsContainer = () => {
         page
     });
     const headData = get(data,'data.data',{});
+    const { mutate } = useDeleteQuery({
+        listKeyId: KEYS.product_get_all
+    });
 
+    const useDelete = (id) => {
+        Swal.fire({
+            title: t("O'chirishga ishonchigiz komilmi?"),
+            icon: "warning",
+            backdrop: "rgba(0,0,0,0.9)",
+            background: "none",
+            color: "#fff",
+            showCancelButton: true,
+            confirmButtonColor: "#e22f2f",
+            confirmButtonText: t("Ha"),
+            cancelButtonText: t("Qaytish"),
+            customClass: {
+                title: "title-color",
+                content: "text-color",
+                icon: "icon-color",
+            },
+        }).then((result) => {
+            if (result.isConfirmed) {
+                mutate({url: `${URLS.product_delete}/${id}`})
+            }
+        });
+    }
     return(
         <>
             <Box bg={'white'} p={4} width="100%" borderRadius="md">
@@ -81,6 +121,8 @@ const ProductsContainer = () => {
                                 <Th>{t("name RU")}</Th>
                                 <Th>{t("category name UZ")}</Th>
                                 <Th>{t("category name RU")}</Th>
+                                <Th>{t("Edit")}</Th>
+                                <Th>{t("Delete")}</Th>
                             </Tr>
 
                         </Thead>
@@ -96,16 +138,17 @@ const ProductsContainer = () => {
                                             key={i + 1}
                                             _hover={{backgroundColor: '#f3f3f3'}}
                                             cursor={"pointer"}
-                                            onClick={() => {
-                                                setItemData(item)
-                                                updateOnOpen()
-                                            }}
                                         >
                                             <Td>{get(item, "number", "-")}</Td>
                                             <Td>{get(item, "nameUz", "-")}</Td>
                                             <Td>{get(item, "nameRu", "-")}</Td>
                                             <Td>{get(item, "category.nameUz", "-")}</Td>
                                             <Td>{get(item, "category.nameRu", "-")}</Td>
+                                            <Td><IconButton icon={<AiOutlineEdit />}  onClick={() => {
+                                                setItemData(item)
+                                                updateOnOpen()
+                                            }} /></Td>
+                                            <Td><IconButton colorScheme={'red'} icon={<AiOutlineDelete />} onClick={() => useDelete(get(item,'id',''))} /></Td>
                                         </Tr>
                                     ))}
                                 </Tbody>
@@ -119,14 +162,29 @@ const ProductsContainer = () => {
                     page={page}
                 />
             </Box>
-            <UpdateItem
+            <Modal
                 isOpen={updateIsOpen}
                 onClose={updateOnClose}
-                itemData={itemData}
-                title={"Edit product"}
-                listKeyId={KEYS.product_get_all}
-                url={URLS.product_edit}
-            />
+                size={{base: 'sm', md: 'xl'}}
+            >
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>{t("Edit product")}</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <UpdateItem
+                            itemData={itemData}
+                            listKeyId={KEYS.product_get_all}
+                            url={URLS.product_edit}
+                        />
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button onClick={updateOnClose}>
+                            {t('Back')}
+                        </Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
         </>
     )
 }

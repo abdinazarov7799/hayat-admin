@@ -41,7 +41,7 @@ const TranslationContainer = () => {
     params: {
       params: {
         key: searchWord,
-        size: 15,
+        size: 10,
       },
     },
     page,
@@ -113,7 +113,6 @@ const TranslationContainer = () => {
         />
       </Box>
       <Modal
-        closeOnOverlayClick={false}
         isOpen={isOpen}
         onClose={onClose}
         size={"2xl"}

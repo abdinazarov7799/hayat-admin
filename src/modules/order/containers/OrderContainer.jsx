@@ -5,7 +5,7 @@ import {KEYS} from "../../../constants/key.js";
 import {OverlayLoader} from "../../../components/loader/index.js";
 import {Box, Button, Flex, Heading, Link, Text} from "@chakra-ui/react";
 import {useTranslation} from "react-i18next";
-import {get, isArray, isEmpty, isNull} from "lodash";
+import {get, isArray, isEmpty, isEqual, isNull} from "lodash";
 import {FiClock, FiPhone, FiTag, FiUser} from "react-icons/fi";
 import usePostQuery from "../../../hooks/api/usePostQuery.js";
 
@@ -34,8 +34,8 @@ const OrderContainer = () => {
     }
     return(
         <>
-        <Flex width={"100%"} justifyContent={"center"} alignItems={"center"}>
-            <Box p={4} backgroundColor={'#f6f6f6'} minHeight={'100vh'}>
+        <Flex width={"100%"} backgroundColor={'#f6f6f6'} justifyContent={"center"} alignItems={"center"}>
+            <Box p={4} minHeight={'100vh'} width={{base: '100%',md: '50%'}}>
                 <Heading size={'md'} mb={5}>
                     {t("Буюртма")} #{get(headData,'number','')}
                 </Heading>
@@ -84,6 +84,13 @@ const OrderContainer = () => {
                             <Text>{get(headData,'comment','')}</Text>
                     }
                 </Flex>
+                {
+                    isEqual(get(headData,'status'),"DELIVERED") && (
+                        <Text mt={3} textAlign={"center"} color={'red'}>
+                            {t("Order delivered!")}
+                        </Text>
+                    )
+                }
                 <Box mt={4}>
                     <Link
                         isExternal
@@ -91,14 +98,18 @@ const OrderContainer = () => {
                     >
                         <Button width={'100%'} colorScheme={"yellow"}>{t('МАНЗИЛ ЛОКАЦИЯСИ')}</Button>
                     </Link>
-                    <Button
-                        width={'100%'}
-                        colorScheme={"green"}
-                        mt={2}
-                        onClick={orderDelivered}
-                    >
-                        {t('ЕТКАЗИБ БЕРИЛДИ')}
-                    </Button>
+                    {
+                        !isEqual(get(headData,'status'),"DELIVERED") && (
+                            <Button
+                                width={'100%'}
+                                colorScheme={"green"}
+                                mt={2}
+                                onClick={orderDelivered}
+                            >
+                                {t('ЕТКАЗИБ БЕРИЛДИ')}
+                            </Button>
+                        )
+                    }
                 </Box>
             </Box>
         </Flex>
