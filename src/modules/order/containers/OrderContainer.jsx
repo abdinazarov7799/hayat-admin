@@ -13,7 +13,7 @@ import usePostQuery from "../../../hooks/api/usePostQuery.js";
 const OrderContainer = () => {
     const { id } = useParams();
     const {t} = useTranslation();
-    const {data,isLoading} = useGetOneQuery({
+    const {data,isLoading,refetch} = useGetOneQuery({
         url: URLS.get_order,
         key: KEYS.get_order,
         id
@@ -24,6 +24,7 @@ const OrderContainer = () => {
     const orderDelivered = () => {
         mutate({url: `${URLS.delivered_order}/${id}`},{
             onSuccess: () => {
+                refetch();
             }
         });
     };
