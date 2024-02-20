@@ -18,8 +18,7 @@ const OrderContainer = () => {
         key: KEYS.get_order,
         id
     })
-    const {mutate} = usePostQuery({
-    })
+    const {mutate} = usePostQuery({})
 
     const orderDelivered = () => {
         mutate({url: `${URLS.delivered_order}/${id}`},{

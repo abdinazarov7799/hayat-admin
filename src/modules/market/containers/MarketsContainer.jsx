@@ -53,32 +53,7 @@ const MarketsContainer = () => {
         page
     });
     const headData = get(data,'data.data',{});
-    const { mutate } = useDeleteQuery({
-        listKeyId: KEYS.market_get_all
-    });
 
-    const useDelete = (id) => {
-        Swal.fire({
-            title: t("O'chirishga ishonchigiz komilmi?"),
-            icon: "warning",
-            backdrop: "rgba(0,0,0,0.9)",
-            background: "none",
-            color: "#fff",
-            showCancelButton: true,
-            confirmButtonColor: "#e22f2f",
-            confirmButtonText: t("Ha"),
-            cancelButtonText: t("Qaytish"),
-            customClass: {
-                title: "title-color",
-                content: "text-color",
-                icon: "icon-color",
-            },
-        }).then((result) => {
-            if (result.isConfirmed) {
-                mutate({url: `${URLS.market_delete}/${id}`})
-            }
-        });
-    }
     return(
         <>
             <Box bg={'white'} p={4} width="100%" borderRadius="md">
@@ -118,7 +93,6 @@ const MarketsContainer = () => {
                                 <Th>{t("name UZ")}</Th>
                                 <Th>{t("name RU")}</Th>
                                 <Th>{t("Edit")}</Th>
-                                <Th>{t("Delete")}</Th>
                             </Tr>
 
                         </Thead>
@@ -141,7 +115,6 @@ const MarketsContainer = () => {
                                                 setItemData(item)
                                                 updateOnOpen()
                                             }} /></Td>
-                                            <Td><IconButton colorScheme={'red'} icon={<AiOutlineDelete />} onClick={() => useDelete(get(item,'id',''))} /></Td>
                                         </Tr>
                                     ))}
                                 </Tbody>
