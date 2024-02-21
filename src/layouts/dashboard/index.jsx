@@ -18,7 +18,6 @@ import MobileNav from "./components/MobileNav";
 
 export default function DashboardLayout({children}) {
     const {isOpen, onOpen, onClose} = useDisclosure();
-    const user = useStore((state) => get(state, "user", {}));
     const setUser = useStore((state) => get(state, "setUser", () => {}));
     const setAuthenticated = useStore((state) => get(state, "setAuthenticated", () => {}));
     const {t} = useTranslation();

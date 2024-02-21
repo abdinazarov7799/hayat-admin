@@ -8,7 +8,7 @@ import { URLS } from "../../../constants/url";
 import { useSettingsStore, useStore } from "../../../store";
 import usePostQuery from "../../../hooks/api/usePostQuery";
 import { OverlayLoader } from "../../../components/loader";
-import logo from "../../../assets/images/logo.png";
+import logo from "../../../assets/images/logo.svg";
 import {useTranslation} from "react-i18next";
 
 const LoginContainer = ({ ...rest }) => {

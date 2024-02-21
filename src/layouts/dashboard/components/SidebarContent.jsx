@@ -1,7 +1,7 @@
 import {useTranslation} from "react-i18next";
 import {Box, CloseButton, Flex, Icon, Image, Link, Text, useColorModeValue} from "@chakra-ui/react";
 import {NavLink} from "react-router-dom";
-import logo from "../../../assets/images/logo.png";
+import logo from "../../../assets/images/logo.svg";
 import {get} from "lodash";
 import React from "react";
 
@@ -72,7 +72,7 @@ const SidebarContent = ({onClose, ...rest}) => {
                 <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
                     <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
                         <NavLink to={"/"}>
-                            <Image className={"dashboard-logo"} src={logo} width={130} height={55} />
+                            <Image src={logo} width={90} height={50} />
                         </NavLink>
                     </Text>
                     <CloseButton display={{base: "flex", md: "none"}} onClick={onClose}/>

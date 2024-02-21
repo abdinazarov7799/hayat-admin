@@ -17,9 +17,8 @@ import {
 } from "@chakra-ui/react";
 import {FiChevronDown, FiMenu} from "react-icons/fi";
 import {NavLink} from "react-router-dom";
-import logo from "../../../assets/images/logo.png";
+import logo from "../../../assets/images/logo.svg";
 import React from "react";
-import userImg from '../../../assets/images/user.png';
 import {AiOutlineLogout} from "react-icons/ai";
 import UploadFile from "./UploadFile.jsx";
 
@@ -61,15 +60,6 @@ const MobileNav = ({
                 aria-label="open menu"
                 icon={<FiMenu/>}
             />
-
-            <NavLink to={"/"} >
-                <Image
-                    className={"dashboard-logo"}
-                    width={150}
-                    display={{base: "flex", md: "none"}}
-                    src={logo}
-                />
-            </NavLink>
 
             <HStack spacing={{base: "2", md: "6"}}>
                 <Button onClick={onOpenFileUpload}>
