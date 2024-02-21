@@ -5,7 +5,7 @@ import {
   FormLabel,
   Input,
   Stack,
-  Text,
+  Text, Textarea,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { URLS } from "../../../../constants/url";
@@ -21,7 +21,7 @@ const LanguageForm = ({ langkey, onClose }) => {
   const { handleSubmit, register, setValue } = useForm();
   const { mutate, isLoading } = usePostQuery({
     listKeyId: KEYS.translations_list,
-    hideSuccessToast: false,
+    hideSuccessToast: true,
   });
   const onSubmit = (values) => {
     values.id = get(langkey, "id");
@@ -83,7 +83,7 @@ const LanguageForm = ({ langkey, onClose }) => {
       </FormControl>
       <FormControl mt={2}>
         <FormLabel>{t("Uzbek")}</FormLabel>
-        <Input
+        <Textarea
           type="text"
           {...register("textUz")}
           defaultValue={get(
@@ -95,7 +95,7 @@ const LanguageForm = ({ langkey, onClose }) => {
       </FormControl>
       <FormControl mt={5}>
         <FormLabel>{t("Rus")}</FormLabel>
-        <Input
+        <Textarea
           type="text"
           {...register("textRu")}
           defaultValue={get(
