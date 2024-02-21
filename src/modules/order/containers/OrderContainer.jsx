@@ -87,7 +87,7 @@ const OrderContainer = () => {
                 {
                     isEqual(get(headData,'status'),"DELIVERED") && (
                         <Text mt={3} textAlign={"center"} color={'red'}>
-                            {t("Order delivered!")}
+                            {t("Order delivered")}!
                         </Text>
                     )
                 }

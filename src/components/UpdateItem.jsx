@@ -5,13 +5,6 @@ import {
     FormLabel,
     Input,
     InputGroup,
-    Modal,
-    ModalBody,
-    ModalCloseButton,
-    ModalContent,
-    ModalFooter,
-    ModalHeader,
-    ModalOverlay,
     NumberDecrementStepper,
     NumberIncrementStepper,
     NumberInput,
@@ -35,13 +28,16 @@ export const UpdateItem = ({
                                url,
 }) => {
     const { t } = useTranslation();
-    const { mutate, isLoading } = usePutQuery({listKeyId});
     const {
         handleSubmit,
         register,
         formState: { errors, isSubmitting },
     } = useForm();
 
+    const { mutate, isLoading } = usePutQuery({
+        listKeyId,
+        hideSuccessToast: false
+    });
     const {data,refetch:categoryRefetch} = useGetAllQuery({
         key: KEYS.category_get_all,
         url: URLS.category_get_all,
@@ -63,7 +59,7 @@ export const UpdateItem = ({
         mutate(
             { url: `${url}/${get(itemData,'id')}`, attributes: values },
             {
-                onSuccess: ({ data }) => {
+                onSuccess: () => {
                     onClose();
                 },
             }

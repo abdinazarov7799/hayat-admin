@@ -116,7 +116,7 @@ const UserList = () => {
                         isArray(get(headData,'content',[]))) ?
                     (
                         <TableContainer>
-                            <Table colorScheme="gray" size={"md"}>
+                            <Table colorScheme="gray" size={"sm"}>
                                 <Thead>
                                     <Tr>
                                         <Th>{t("Name")}</Th>

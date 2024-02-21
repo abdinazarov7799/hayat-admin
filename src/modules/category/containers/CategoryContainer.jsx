@@ -114,7 +114,7 @@ const CategoryContainer = () => {
 
               <TableContainer mt={6}>
                   {isLoading && <OverlayLoader />}
-                  <Table colorScheme="gray" size={"md"} >
+                  <Table colorScheme="gray" size={"sm"} >
                       <Thead>
                           <Tr>
                               <Th>{t("Ordinal number")}</Th>

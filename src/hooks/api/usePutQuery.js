@@ -26,7 +26,7 @@ const usePutQuery = ({hideSuccessToast = false, listKeyId = null}) => {
                     }
                 },
                 onError: (data) => {
-                    toast.error(t(data?.response?.data?.message || 'ERROR'))
+                    // toast.error(t(data?.response?.data?.message || 'ERROR'))
                 }
             }
         );

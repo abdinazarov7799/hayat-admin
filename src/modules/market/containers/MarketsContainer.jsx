@@ -21,7 +21,7 @@ import {
     InputGroup,
     ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Modal, IconButton,
 } from "@chakra-ui/react";
-import {AiOutlineDelete, AiOutlineEdit, AiOutlinePlus} from "react-icons/ai";
+import {AiOutlineEdit, AiOutlinePlus} from "react-icons/ai";
 import {CreateItem} from "../../../components/CreateItem.jsx";
 import {KEYS} from "../../../constants/key.js";
 import {URLS} from "../../../constants/url.js";
@@ -29,8 +29,6 @@ import {OverlayLoader} from "../../../components/loader/index.js";
 import {UpdateItem} from "../../../components/UpdateItem.jsx";
 import usePaginateQuery from "../../../hooks/api/usePaginateQuery.js";
 import {FaSearch} from "react-icons/fa";
-import useDeleteQuery from "../../../hooks/api/useDeleteQuery.js";
-import Swal from "sweetalert2";
 
 
 const MarketsContainer = () => {
@@ -87,7 +85,7 @@ const MarketsContainer = () => {
 
                 <TableContainer mt={6}>
                     {isLoading && <OverlayLoader />}
-                    <Table colorScheme="gray" size={"md"} >
+                    <Table colorScheme="gray" size={"sm"} >
                         <Thead>
                             <Tr>
                                 <Th>{t("name UZ")}</Th>
