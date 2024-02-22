@@ -2,25 +2,20 @@ import {useTranslation} from "react-i18next";
 import {useSettingsStore} from "../../../store";
 import {get} from "lodash";
 import {
-    Avatar,
     Box,
     Button,
     Flex,
     HStack,
     IconButton,
-    Image,
     Menu,
-    MenuButton, MenuDivider, MenuItem, MenuList,
+    MenuButton, MenuItem, MenuList,
     Text,
     useColorModeValue, useDisclosure,
     VStack
 } from "@chakra-ui/react";
 import {FiChevronDown, FiMenu} from "react-icons/fi";
-import {NavLink} from "react-router-dom";
-import logo from "../../../assets/images/logo.svg";
 import React from "react";
 import {AiOutlineLogout} from "react-icons/ai";
-import UploadFile from "./UploadFile.jsx";
 
 const MobileNav = ({
                        onOpen,
@@ -29,7 +24,6 @@ const MobileNav = ({
                        ...rest
                    }) => {
     const {t, i18n} = useTranslation();
-    const {isOpen,onOpen:onOpenFileUpload,onClose} = useDisclosure()
     const languages = [
         {id: 1, key: "Uz", label: "O'zbekcha"},
         {id: 2, key: "Ru", label: "Русский"},
@@ -62,10 +56,6 @@ const MobileNav = ({
             />
 
             <HStack spacing={{base: "2", md: "6"}}>
-                <Button onClick={onOpenFileUpload}>
-                    {t("Upload file")}
-                </Button>
-                <UploadFile onClose={onClose} isOpen={isOpen}/>
                 <Menu>
                     <MenuButton
                         as={Button}
